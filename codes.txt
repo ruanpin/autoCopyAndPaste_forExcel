@@ -1,0 +1,43 @@
+Sub 跨檔案複製貼上()
+
+
+Dim fileNameArray
+'要去哪個檔案抓取資料?
+fileNameArray = Array("\197.xls", "\221.xls", "\235.xls", "\242.xls", "\248.xls", "\254.xls", "\260.xls", "\262.xls", "\276.xls", "\282.xls", "\284.xls", "\285.xls", "\289.xls", "\290.xls", "\296.xls", "\301.xls", "\304.xls", "\306.xls", "\308.xls", "\312.xls", "\315.xls", "\320.xls", "\325.xls", "\326.xls", "\327.xls", "\329.xls", "\330.xls", "\334.xls")
+
+Dim pickRange As String
+'要去哪些格子找要抓的資料?
+pickRange = "C13: D1573"
+
+Dim targetfile As String
+'被抓取的資料要貼在哪個檔案?
+targetfile = "活頁簿1.xlsm"
+
+Dim pasteSiteArray
+'被抓取的資料要貼在哪一格?
+pasteSiteArray = Array("A4", "C4", "E4", "G4", "I4", "K4", "M4", "O4", "Q4", "S4", "U4", "W4", "Y4", "AA4", "AC4", "AE4", "AG4", "AI4", "AK4", "AM4", "AO4", "AQ4", "AS4", "AU4", "AW4", "AY4", "BA4", "BC4", "BE4", "BG4")
+
+
+
+
+
+
+i = 0
+
+Do While i < UBound(fileNameArray) + 1
+
+Workbooks.Open (ThisWorkbook.Path & fileNameArray(i))
+
+range(pickRange).Select
+Selection.Copy
+Windows(targetfile).Activate
+Sheets("工作表1").Select
+Sheets("工作表1").range(pasteSiteArray(i)).Select
+ActiveSheet.Paste
+
+i = i + 1
+
+Loop
+
+
+End Sub
